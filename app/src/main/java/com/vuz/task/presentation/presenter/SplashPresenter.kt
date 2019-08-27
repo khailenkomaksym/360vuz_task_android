@@ -18,9 +18,9 @@ class SplashPresenter
     }
 
     override fun checkUser() {
-        val isExists = checkUserSampleCase.execute()
+        val isLogin = checkUserSampleCase.execute()
 
-        if (isExists) {
+        if (isLogin) {
             splashContractView?.onStartHome()
         } else {
             splashContractView?.onStartLogin()

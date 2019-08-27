@@ -3,7 +3,7 @@ package com.vuz.task.di.modules
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.vuz.task.Constants.Companion.BASE_URL
 import com.vuz.task.data.api.GithubAPI
-import com.vuz.task.data.repository.NetworkRepository
+import com.vuz.task.data.repository.NetworkRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -50,7 +50,7 @@ class NetworkModule {
     }
 
     @Provides
-    internal fun getNetworkRepository(githubAPI: GithubAPI): NetworkRepository {
-        return NetworkRepository(githubAPI)
+    internal fun getNetworkRepository(githubAPI: GithubAPI): NetworkRepositoryImpl {
+        return NetworkRepositoryImpl(githubAPI)
     }
 }

@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">Technical Task</string>
-    <string name="login">Login</string>
+
+    <string name="login_title">Login</string>
+
+    <string name="login">Github Login</string>
+    <string name="password">Password</string>
+    <string name="submit">Submit</string>
+
+    <string name="login_error_empty">Enter your login</string>
+    <string name="login_error_need_only_alphanumeric">Only alphanumeric chars allowed</string>
+
+    <string name="password_error_empty">Enter your password</string>
+    <string name="password_error_min_length">Password must be at least 8 characters</string>
+    <string name="ok">OK</string>
+
+    <string name="internet_connection_error">Check your internet connection</string>
 </resources>

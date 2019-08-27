@@ -15,4 +15,5 @@ abstract class SplashActivityModule {
 
     @Binds
     abstract fun bindLocalSharedPreferencesRepository(localSharedPreferencesRepositoryImpl: LocalSharedPreferencesRepositoryImpl): LocalSharedPreferencesRepository
+
 }

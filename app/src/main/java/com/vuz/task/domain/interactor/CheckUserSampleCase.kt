@@ -10,5 +10,4 @@ class CheckUserSampleCase
     override fun execute(params: Unit?): Boolean {
         return localPreferencesRepository.isSignIn()
     }
-
 }

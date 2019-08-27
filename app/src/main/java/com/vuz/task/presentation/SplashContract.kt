@@ -16,6 +16,6 @@ interface SplashContract {
         fun detachView()
 
         fun checkUser()
-        
+
     }
 }
