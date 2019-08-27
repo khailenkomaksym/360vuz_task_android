@@ -1,11 +1,8 @@
-package com.vuz.task.presentation.ui
+package com.vuz.task.presentation.view
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.vuz.task.R
-import com.vuz.task.presentation.presenter.HomePresenter
-import com.vuz.task.presentation.view.HomeView
 
 class HomeActivity : AppCompatActivity() {
 

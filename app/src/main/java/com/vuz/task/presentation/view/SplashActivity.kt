@@ -1,31 +1,29 @@
-package com.vuz.task.presentation.ui
+package com.vuz.task.presentation.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import com.vuz.task.App
 import com.vuz.task.R
-import com.vuz.task.data.repository.NetworkRepository
 import com.vuz.task.presentation.base.BaseActivity
-import com.vuz.task.presentation.presenter.LoginPresenter
 import com.vuz.task.presentation.presenter.SplashPresenter
-import com.vuz.task.presentation.view.LoginView
-import com.vuz.task.presentation.view.SplashView
+import com.vuz.task.presentation.SplashContract
 import javax.inject.Inject
 
-class SplashActivity : BaseActivity(), SplashView {
+class SplashActivity : BaseActivity(), SplashContract.View {
 
-    //@Inject
-    //lateinit var splashPresenter: SplashPresenter
+    @Inject
+    lateinit var splashPresenter: SplashPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        //splashPresenter.attachView(this)
+        splashPresenter.attachView(this)
+        splashPresenter.checkUser()
+    }
 
-        //splashPresenter.checkUser()
+    override fun onDestroy() {
+        super.onDestroy()
+        splashPresenter.detachView()
     }
 
     override fun onStartHome() {

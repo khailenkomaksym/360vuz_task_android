@@ -1,4 +1,4 @@
-package com.vuz.task.presentation.ui
+package com.vuz.task.presentation.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

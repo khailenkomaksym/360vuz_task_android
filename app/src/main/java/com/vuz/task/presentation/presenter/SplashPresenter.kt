@@ -1,27 +1,29 @@
 package com.vuz.task.presentation.presenter
 
-import android.util.Log
-import com.vuz.task.presentation.view.LoginView
-import com.vuz.task.presentation.view.SplashView
+import com.vuz.task.domain.interactor.CheckUserSampleCase
+import com.vuz.task.presentation.SplashContract
+import javax.inject.Inject
 
-class SplashPresenter {
-    var splashView: SplashView? = null
+class SplashPresenter
+@Inject constructor(val checkUserSampleCase: CheckUserSampleCase) : SplashContract.Presenter {
 
-    fun attachView(splashView: SplashView) {
-        this.splashView = splashView
+    var splashContractView: SplashContract.View? = null
+
+    override fun attachView(view: SplashContract.View) {
+        splashContractView = view
     }
 
-    fun checkUser() {
-        val isExists = false
+    override fun detachView() {
+        splashContractView = null
+    }
 
-        Log.d("myLogs", "presenter impl")
+    override fun checkUser() {
+        val isExists = checkUserSampleCase.execute()
 
         if (isExists) {
-            Log.d("myLogs", "presenter 1 impl: " + splashView)
-            splashView?.onStartHome()
+            splashContractView?.onStartHome()
         } else {
-            Log.d("myLogs", "presenter 2 impl")
-            splashView?.onStartLogin()
+            splashContractView?.onStartLogin()
         }
     }
 }
