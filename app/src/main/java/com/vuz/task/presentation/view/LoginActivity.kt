@@ -64,7 +64,7 @@ class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
         val view = this.currentFocus
         view?.let { v ->
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-            imm?.let { it.hideSoftInputFromWindow(v.windowToken, 0) }
+            imm?.hideSoftInputFromWindow(v.windowToken, 0)
         }
     }
 
@@ -116,6 +116,8 @@ class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
             errorMessage = getString(R.string.password_error_empty)
         } else if (errorType == PasswordErrors.ERROR_MIN_LENGTH) {
             errorMessage = getString(R.string.password_error_min_length)
+        } else if (errorType == PasswordErrors.ERROR_NEED_TO_CHARACTERS) {
+            errorMessage = getString(R.string.password_error_need_characters)
         }
 
         textInputLayoutPassword.error = errorMessage

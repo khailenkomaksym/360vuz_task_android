@@ -12,6 +12,7 @@
 
     <string name="password_error_empty">Enter your password</string>
     <string name="password_error_min_length">Password must be at least 8 characters</string>
+    <string name="password_error_need_characters">Need at least 1 char on lower case, 1 on upper case, 1 number, 1 special char</string>
     <string name="ok">OK</string>
 
     <string name="internet_connection_error">Check your internet connection</string>
