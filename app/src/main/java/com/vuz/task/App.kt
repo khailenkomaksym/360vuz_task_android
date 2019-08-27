@@ -1,8 +1,12 @@
 package com.vuz.task
 
-import androidx.multidex.MultiDexApplication
+import com.vuz.task.di.component.DaggerApplicationComponent
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 
-class App : MultiDexApplication() {
+class App : DaggerApplication() {
+    override fun applicationInjector(): AndroidInjector<out App> =
+        DaggerApplicationComponent.builder().create(this)
 
     override fun onCreate() {
         super.onCreate()
