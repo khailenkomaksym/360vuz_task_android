@@ -8,4 +8,8 @@ interface LocalSharedPreferencesRepository {
 
     fun isSignIn(): Boolean
 
+    fun writeUsername(userName: String?)
+
+    fun readUserName(): String?
+
 }

@@ -12,6 +12,7 @@ class LocalSharedPreferencesRepositoryImpl @Inject constructor(val application: 
 
     companion object {
         private const val USER_SIGN = "userSign"
+        private const val USERNAME = "username"
     }
 
     private val sharedPreferences: SharedPreferences by lazy {
@@ -34,5 +35,15 @@ class LocalSharedPreferencesRepositoryImpl @Inject constructor(val application: 
         sharedPreferences.edit()
             .putBoolean(USER_SIGN, true)
             .apply()
+    }
+
+    override fun writeUsername(userName: String?) {
+        sharedPreferences.edit()
+            .putString(USERNAME, userName)
+            .apply()
+    }
+
+    override fun readUserName(): String? {
+        return sharedPreferences.getString(USERNAME, "")
     }
 }

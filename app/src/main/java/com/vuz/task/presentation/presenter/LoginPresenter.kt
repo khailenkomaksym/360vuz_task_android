@@ -11,7 +11,9 @@ import javax.inject.Inject
 class LoginPresenter
 @Inject constructor(val signInGithubUseCase: SignInGithubUseCase,
                     val loginCheckUseCase: LoginCheckUseCase,
-                    val passwordCheckUseCase: PasswordCheckUseCase) : LoginContract.Presenter {
+                    val passwordCheckUseCase: PasswordCheckUseCase,
+                    val writeUsernameUseCase: WriteUsernameUseCase,
+                    val signInUseCase: SignInUseCase) : LoginContract.Presenter {
 
     var loginContractView: LoginContract.View? = null
 
