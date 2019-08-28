@@ -32,7 +32,7 @@ class SplashActivity : BaseActivity(), SplashContract.View {
     }
 
     override fun onStartLogin() {
-        startActivity(Intent(this, LoginActivity::class.java))
+        startActivity(Intent(this, LoginGithubActivity::class.java))
         finish()
     }
 

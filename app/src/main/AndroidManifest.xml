@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.view.LoginActivity"
+        <activity android:name=".presentation.view.LoginGithubActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
 

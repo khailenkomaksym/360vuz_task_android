@@ -15,7 +15,7 @@ import com.vuz.task.presentation.util.InternetUtil
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
+class LoginGithubActivity : DaggerAppCompatActivity(), LoginContract.View {
 
     @Inject
     lateinit var loginPresenter: LoginPresenter

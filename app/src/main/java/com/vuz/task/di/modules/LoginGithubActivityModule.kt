@@ -10,7 +10,7 @@ import dagger.Binds
 import dagger.Module
 
 @Module
-abstract class LoginActivityModule {
+abstract class LoginGithubActivityModule {
 
     @Binds
     abstract fun bindPresenter(presenter: LoginPresenter): LoginContract.Presenter
