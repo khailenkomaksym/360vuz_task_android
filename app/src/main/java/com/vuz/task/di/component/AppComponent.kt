@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [AndroidSupportInjectionModule::class, ActivityContributorModule::class, ApplicationModule::class,
-                        NetworkModule::class])
+                        NetworkModule::class, RoomModule::class])
 interface ApplicationComponent : AndroidInjector<App> {
 
     fun threadExecutor(): ThreadExecutor

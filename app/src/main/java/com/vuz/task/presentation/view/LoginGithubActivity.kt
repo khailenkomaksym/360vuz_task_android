@@ -1,12 +1,14 @@
 package com.vuz.task.presentation.view
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.vuz.task.R
+import com.vuz.task.data.model.LoginResponse
 import com.vuz.task.domain.LoginErrors
 import com.vuz.task.domain.PasswordErrors
 import com.vuz.task.presentation.LoginContract
@@ -82,16 +84,21 @@ class LoginGithubActivity : DaggerAppCompatActivity(), LoginContract.View {
         showErrorPopup(error)
     }
 
-    override fun onAuthSuccess() {
+    override fun onDatabaseError(errorMessage: String?) {
+        showErrorPopup(errorMessage)
     }
 
-    override fun onLoginSuccess() {
+    override fun onAuthSuccess(loginResponse: LoginResponse) {
+        loginPresenter.handleSuccessAuth(loginResponse)
+    }
+
+    override fun onLoginInputSuccess() {
         textInputLayoutLogin.error = null
 
         loginPresenter.checkPassword(getPassword())
     }
 
-    override fun onLoginError(errorType: Int) {
+    override fun onLoginInputError(errorType: Int) {
         var errorMessage = ""
 
         if (errorType == LoginErrors.ERROR_EMPTY_FIELD) {
@@ -103,13 +110,13 @@ class LoginGithubActivity : DaggerAppCompatActivity(), LoginContract.View {
         textInputLayoutLogin.error = errorMessage
     }
 
-    override fun onPasswordSuccess() {
+    override fun onPasswordInputSuccess() {
         textInputLayoutPassword.error = null
 
         loginPresenter.signIn(getLogin(), getPassword())
     }
 
-    override fun onPasswordError(errorType: Int) {
+    override fun onPasswordInputError(errorType: Int) {
         var errorMessage = ""
 
         if (errorType == PasswordErrors.ERROR_EMPTY_FIELD) {
@@ -121,5 +128,10 @@ class LoginGithubActivity : DaggerAppCompatActivity(), LoginContract.View {
         }
 
         textInputLayoutPassword.error = errorMessage
+    }
+
+    override fun onStartHome() {
+        startActivity(Intent(this, HomeActivity::class.java))
+        finish()
     }
 }

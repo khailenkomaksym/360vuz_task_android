@@ -5,6 +5,6 @@ import io.reactivex.Observable
 
 interface NetworkRepository {
 
-    fun signIn(auth: String): Observable<LoginResponse>
+    fun signIn(auth: String?): Observable<LoginResponse>
 
 }

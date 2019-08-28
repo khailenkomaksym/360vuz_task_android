@@ -8,6 +8,6 @@ import retrofit2.http.Header
 interface GithubAPI {
 
     @GET("user")
-    fun login(@Header("Authorization") auth: String): Observable<LoginResponse>
+    fun login(@Header("Authorization") auth: String?): Observable<LoginResponse>
 
 }

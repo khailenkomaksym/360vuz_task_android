@@ -11,7 +11,7 @@ import javax.inject.Singleton
 class NetworkRepositoryImpl
 @Inject constructor(val githubAPI: GithubAPI) : NetworkRepository {
 
-    override fun signIn(auth: String): Observable<LoginResponse> {
+    override fun signIn(auth: String?): Observable<LoginResponse> {
         return githubAPI.login(auth)
     }
 

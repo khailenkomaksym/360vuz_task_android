@@ -1,5 +1,7 @@
 package com.vuz.task.presentation
 
+import com.vuz.task.data.model.LoginResponse
+
 interface LoginContract {
     interface View {
 
@@ -9,15 +11,19 @@ interface LoginContract {
 
         fun onAuthError(errorMessage: String?)
 
-        fun onAuthSuccess()
+        fun onDatabaseError(errorMessage: String?)
 
-        fun onLoginSuccess()
+        fun onAuthSuccess(loginResponse: LoginResponse)
 
-        fun onLoginError(errorType: Int)
+        fun onLoginInputSuccess()
 
-        fun onPasswordSuccess()
+        fun onLoginInputError(errorType: Int)
 
-        fun onPasswordError(errorType: Int)
+        fun onPasswordInputSuccess()
+
+        fun onPasswordInputError(errorType: Int)
+
+        fun onStartHome()
 
     }
 
@@ -32,6 +38,8 @@ interface LoginContract {
         fun checkLogin(login: String)
 
         fun checkPassword(password: String)
+
+        fun handleSuccessAuth(loginResponse: LoginResponse)
 
     }
 }

@@ -5,6 +5,7 @@ import androidx.annotation.NonNull
 import com.vuz.task.data.model.LoginResponse
 import com.vuz.task.domain.interactor.*
 import com.vuz.task.presentation.LoginContract
+import io.reactivex.observers.DisposableCompletableObserver
 import okhttp3.Credentials
 import javax.inject.Inject
 
@@ -13,6 +14,7 @@ class LoginPresenter
                     val loginCheckUseCase: LoginCheckUseCase,
                     val passwordCheckUseCase: PasswordCheckUseCase,
                     val writeUsernameUseCase: WriteUsernameUseCase,
+                    val writeUserDatabaseUseCase: WriteUserDatabaseUseCase,
                     val signInUseCase: SignInUseCase) : LoginContract.Presenter {
 
     var loginContractView: LoginContract.View? = null
@@ -43,14 +45,21 @@ class LoginPresenter
         signInGithubUseCase.execute(observer = ExternalEventObserver())
     }
 
+    override fun handleSuccessAuth(loginResponse: LoginResponse) {
+        writeUsernameUseCase.execute(loginResponse.login)
+        signInUseCase.execute()
+        writeUserDatabaseUseCase.loginResponse = loginResponse
+        writeUserDatabaseUseCase.execute(observer = UploadObserver())
+    }
+
     private inner class PasswordEventObserver : EmptyCallback<Int> {
 
         override fun onSuccess() {
-            loginContractView?.onPasswordSuccess()
+            loginContractView?.onPasswordInputSuccess()
         }
 
         override fun onError(@NonNull t: Int) {
-            loginContractView?.onPasswordError(t)
+            loginContractView?.onPasswordInputError(t)
         }
 
     }
@@ -58,11 +67,11 @@ class LoginPresenter
     private inner class LoginEventObserver : EmptyCallback<Int> {
 
         override fun onSuccess() {
-            loginContractView?.onLoginSuccess()
+            loginContractView?.onLoginInputSuccess()
         }
 
         override fun onError(@NonNull t: Int) {
-            loginContractView?.onLoginError(t)
+            loginContractView?.onLoginInputError(t)
         }
 
     }
@@ -70,13 +79,24 @@ class LoginPresenter
     private inner class ExternalEventObserver : EmptyObserver<LoginResponse>() {
 
         override fun onNext(t: LoginResponse) {
-            loginContractView?.onAuthSuccess()
+            loginContractView?.onAuthSuccess(t)
         }
 
         override fun onError(e: Throwable) {
 
             loginContractView?.onAuthError(e.message)
             super.onError(e)
+        }
+    }
+
+    private inner class UploadObserver : DisposableCompletableObserver() {
+
+        override fun onComplete() {
+            loginContractView?.onStartHome()
+        }
+
+        override fun onError(e: Throwable) {
+            loginContractView?.onDatabaseError(e.message)
         }
     }
 
