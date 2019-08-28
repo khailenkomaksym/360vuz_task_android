@@ -1,6 +1,5 @@
 package com.vuz.task.presentation.presenter
 
-import android.util.Log
 import androidx.annotation.NonNull
 import com.vuz.task.data.model.LoginResponse
 import com.vuz.task.domain.interactor.*

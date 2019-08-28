@@ -22,8 +22,8 @@ class SplashActivity : BaseActivity(), SplashContract.View {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         splashPresenter.detachView()
+        super.onDestroy()
     }
 
     override fun onStartHome() {

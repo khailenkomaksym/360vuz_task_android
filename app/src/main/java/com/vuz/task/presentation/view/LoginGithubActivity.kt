@@ -134,4 +134,9 @@ class LoginGithubActivity : DaggerAppCompatActivity(), LoginContract.View {
         startActivity(Intent(this, HomeActivity::class.java))
         finish()
     }
+
+    override fun onDestroy() {
+        loginPresenter.detachView()
+        super.onDestroy()
+    }
 }

@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Singleton
 class UserRepositoryImpl
 @Inject constructor(val userDao: UserDao): UserRepository {
-    override fun getInfoByLogin(login: String): Observable<User> {
+    override fun getInfoByLogin(login: String?): Observable<User> {
         return userDao.getInfoByLogin(login)
     }
 

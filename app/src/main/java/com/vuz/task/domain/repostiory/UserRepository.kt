@@ -6,7 +6,7 @@ import io.reactivex.Observable
 
 interface UserRepository {
 
-    fun getInfoByLogin(login: String): Observable<User>
+    fun getInfoByLogin(login: String?): Observable<User>
 
     fun insertUser(user: User?): Completable
 

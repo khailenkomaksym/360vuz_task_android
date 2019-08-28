@@ -11,7 +11,7 @@ import io.reactivex.Observable
 interface UserDao {
 
     @Query("SELECT * FROM users WHERE login = :login")
-    fun getInfoByLogin(login: String): Observable<User>
+    fun getInfoByLogin(login: String?): Observable<User>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: User?): Completable
