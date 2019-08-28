@@ -11,9 +11,9 @@ import com.vuz.task.R
 import com.vuz.task.data.model.LoginResponse
 import com.vuz.task.domain.LoginErrors
 import com.vuz.task.domain.PasswordErrors
+import com.vuz.task.extensions.isNetworkAvailable
 import com.vuz.task.presentation.LoginContract
 import com.vuz.task.presentation.presenter.LoginPresenter
-import com.vuz.task.presentation.util.InternetUtil
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -78,7 +78,7 @@ class LoginGithubActivity : DaggerAppCompatActivity(), LoginContract.View {
 
     override fun onAuthError(errorMessage: String?) {
         var error = errorMessage
-        if (!InternetUtil.isNetworkAvailable(this)) {
+        if (!isNetworkAvailable()) {
             error = getString(R.string.internet_connection_error)
         }
         showErrorPopup(error)
