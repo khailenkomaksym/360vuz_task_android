@@ -15,6 +15,8 @@ interface LoginContract {
 
         fun onAuthSuccess(loginResponse: LoginResponse)
 
+        fun onDatabaseInsertSuccess()
+
         fun onLoginInputSuccess()
 
         fun onLoginInputError(errorType: Int)
@@ -22,8 +24,6 @@ interface LoginContract {
         fun onPasswordInputSuccess()
 
         fun onPasswordInputError(errorType: Int)
-
-        fun onStartHome()
 
     }
 

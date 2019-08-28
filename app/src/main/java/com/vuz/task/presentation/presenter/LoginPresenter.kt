@@ -58,6 +58,7 @@ class LoginPresenter
         }
 
         override fun onError(@NonNull t: Int) {
+            loginContractView?.onHideProgress()
             loginContractView?.onPasswordInputError(t)
         }
 
@@ -70,6 +71,7 @@ class LoginPresenter
         }
 
         override fun onError(@NonNull t: Int) {
+            loginContractView?.onHideProgress()
             loginContractView?.onLoginInputError(t)
         }
 
@@ -82,7 +84,7 @@ class LoginPresenter
         }
 
         override fun onError(e: Throwable) {
-
+            loginContractView?.onHideProgress()
             loginContractView?.onAuthError(e.message)
             super.onError(e)
         }
@@ -91,10 +93,11 @@ class LoginPresenter
     private inner class UploadObserver : DisposableCompletableObserver() {
 
         override fun onComplete() {
-            loginContractView?.onStartHome()
+            loginContractView?.onDatabaseInsertSuccess()
         }
 
         override fun onError(e: Throwable) {
+            loginContractView?.onHideProgress()
             loginContractView?.onDatabaseError(e.message)
         }
     }

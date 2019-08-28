@@ -13,6 +13,8 @@ import com.vuz.task.domain.LoginErrors
 import com.vuz.task.domain.PasswordErrors
 import com.vuz.task.extensions.isNetworkAvailable
 import com.vuz.task.presentation.LoginContract
+import com.vuz.task.presentation.customview.LoadingButtonView
+import com.vuz.task.presentation.customview.SuccessListener
 import com.vuz.task.presentation.presenter.LoginPresenter
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -26,7 +28,7 @@ class LoginGithubActivity : DaggerAppCompatActivity(), LoginContract.View {
     lateinit var textInputEditTextLogin: TextInputEditText
     lateinit var textInputLayoutPassword: TextInputLayout
     lateinit var textInputEditTextPassword: TextInputEditText
-    lateinit var btnLogin: Button
+    lateinit var btnLogin: LoadingButtonView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,9 +73,11 @@ class LoginGithubActivity : DaggerAppCompatActivity(), LoginContract.View {
     }
 
     override fun onShowProgress() {
+        btnLogin.setLoadingState()
     }
 
     override fun onHideProgress() {
+        btnLogin.setNormalState()
     }
 
     override fun onAuthError(errorMessage: String?) {
@@ -130,7 +134,15 @@ class LoginGithubActivity : DaggerAppCompatActivity(), LoginContract.View {
         textInputLayoutPassword.error = errorMessage
     }
 
-    override fun onStartHome() {
+    override fun onDatabaseInsertSuccess() {
+        btnLogin.setSuccessState(object : SuccessListener {
+            override fun onReady() {
+                onStartHome()
+            }
+        })
+    }
+
+    fun onStartHome() {
         startActivity(Intent(this, HomeActivity::class.java))
         finish()
     }

@@ -23,4 +23,5 @@
     <string name="logout">Logout</string>
     <string name="user_info_title">User\'s Info</string>
     <string name="image_profile">Profile image</string>
+    <string name="login_image">login image</string>
 </resources>
